@@ -1,0 +1,32 @@
+/* Chat messages */
+
+.message-row {
+  display: flex;
+  flex-flow: row unset;
+  justify-content: flex-end;
+  align-items: center;
+  /* border: 2px solid greenyellow;*/
+}
+
+.message {
+  min-height: 10px;
+  color: #333;
+  padding: 10px;
+  margin: 5px 10px;
+  max-width: 45%;
+  word-wrap: unset;
+  border-radius: 8px;
+  background-color: whitesmoke;
+}
+
+.mine {
+  justify-content: flex-end;
+}
+
+.theirs {
+  justify-content: flex-start;
+}
+
+.mine .message {
+  background-color: lightblue;
+}

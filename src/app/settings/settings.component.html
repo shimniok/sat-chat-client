@@ -1,0 +1,41 @@
+<h3>RockBlock Settings</h3>
+
+<form #form="ngForm" (ngSubmit)="onSubmitDevice(form)" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input name="name" type="text" matInput [(ngModel)]="deviceSettings.name" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>IMEI</mat-label>
+    <input name="imei" type="text" matInput [(ngModel)]="deviceSettings.imei" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input name="email" type="email" matInput [(ngModel)]="deviceSettings.email"  />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input name="password" type="password" matInput [(ngModel)]="deviceSettings.password" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Save</button>
+</form>
+
+<!-- <h3>Change Password</h3>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Confirm</mat-label>
+    <input type="password" matInput />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Save</button>
+</form> -->
