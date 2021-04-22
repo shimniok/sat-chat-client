@@ -1,0 +1,16 @@
+<div id="background">
+  <div class="box">
+    <div class="dialog">
+      <h1 mat-dialog-title>Login</h1>
+      <mat-form-field>
+        <mat-label>email</mat-label>
+        <input type="email" matInput [(ngModel)]="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>password</mat-label>
+        <input type="password" matInput [(ngModel)]="password" />
+      </mat-form-field>
+      <button mat-raised-button (click)="login()">Login</button>
+    </div>
+  </div>
+</div>

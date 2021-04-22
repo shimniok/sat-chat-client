@@ -1,0 +1,29 @@
+<mat-drawer-container autosize>
+  <div id="background">
+    <div class="box">
+      <mat-toolbar class="row header" color="primary">
+        <h1>Sat Chat</h1>
+        <button
+          mat-icon-button
+          on-click="drawer.toggle()"
+          class="button-container"
+          aria-label="icon-button with menu icon"
+        >
+          <mat-icon>settings</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <div class="row content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="message-col">
+          <app-messages></app-messages>
+        </div>
+      </div>
+
+      <app-input class="row footer"></app-input>
+    </div>
+  </div>
+
+  <mat-drawer #drawer class="sidenav" mode="over">
+    <app-settings></app-settings>
+  </mat-drawer>
+</mat-drawer-container>

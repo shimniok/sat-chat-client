@@ -1,14 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-// import { DeviceSettings } from "./models/device-settings";
+import { Device } from "./device-type";
 
 @Injectable()
 export class DeviceService {
   getDevices() {
-    return []; 
-    // this.http.get<
-    //   { name: string; imei: string; username: string; password: string }[]
-    // >("/assets/devices.json");
+    return this.http.get<Device[]>("/api/device");
   }
   constructor(private http: HttpClient) {}
 }

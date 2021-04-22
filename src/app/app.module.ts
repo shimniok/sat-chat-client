@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule } from '@angular/router';
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -19,6 +20,9 @@ import { MessageService } from "./message.service";
 import { SettingsComponent } from "./settings/settings.component";
 import { InputComponent } from "./input/input.component";
 import { MessagesComponent } from "./messages/messages.component";
+import { fromEventPattern } from "rxjs";
+import { ChatComponent } from './chat/chat.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -33,16 +37,23 @@ import { MessagesComponent } from "./messages/messages.component";
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDividerModule
+    MatDividerModule,
+    RouterModule.forRoot([
+      { path: "login", component: LoginComponent },
+      { path: "chat", component: ChatComponent },
+      { path: "", redirectTo: "login", pathMatch: "full" },
+    ]),
   ],
   declarations: [
     AppComponent,
     SettingsComponent,
     InputComponent,
     ScrollToBottomDirective,
-    MessagesComponent
+    MessagesComponent,
+    ChatComponent,
+    LoginComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [DeviceService, MessageService]
+  providers: [DeviceService, MessageService],
 })
 export class AppModule {}
