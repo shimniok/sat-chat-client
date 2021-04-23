@@ -1,6 +1,8 @@
 export interface Device {
   id: number;
-  name: string;
+  owner_id: number;
+  // name: string;
+  imei: string;
   username: string;
   password: string;
 }
