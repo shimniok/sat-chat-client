@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { AuthService } from "../auth.service";
 import { UserLogin } from "../user-type";
 
@@ -18,18 +19,16 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginInfo).subscribe(
       (x) => {
-        console.log("authentication next");
+        this.router.navigate(["chat"]);
       },
       (error) => {
         console.log("authentication error");
-      },
-      () => {
-        console.log("authentication complete notification");
+        // TODO: Indicate error
       }
     );
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 }
