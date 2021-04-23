@@ -1,7 +1,10 @@
+import { Device } from "./device-type";
+
 export interface User {
     id: number;
+    name: string;
     email: string;
-    device_id: string;
+    device: Device;
 }
 
 export interface UserLogin {
