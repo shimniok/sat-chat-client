@@ -1,20 +1,34 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Input, OnDestroy, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Message } from "./message-type";
-import { MessagesComponent } from "./messages/messages.component";
+import { BehaviorSubject, Observable, Subject, timer } from "rxjs";
+import { retry, share, switchMap, takeUntil } from "rxjs/operators";
+
 
 @Injectable()
-export class MessageService {
-  constructor(private http: HttpClient) {}
+export class MessageService implements OnDestroy {
+  url = "/api/message";
+  headers = { "content-type": "application/json" };
+  messages: Observable<Message[]>;
+  private stopPolling = new Subject();
+
+  constructor(private http: HttpClient) {
+    this.messages = timer(1, 10000).pipe(
+      switchMap(() =>
+        this.http.get<Message[]>("/api/message", { headers: this.headers })
+      ),
+      retry(2),
+      share(),
+      takeUntil(this.stopPolling)
+    );
+  }
 
   getMessages() {
-    //return this.http.get<Message[]>("/assets/messages.json");
     console.log("getMessages()");
-    return this.http.get<Message[]>("/api/message");
+    return this.messages;
   }
 
-  getMessagesSince(message: Message) {
-    return this.http.get<Message[]>("/api/message/since/"+message.momsn);
+  ngOnDestroy() {
+    this.stopPolling.next();
   }
-
 }

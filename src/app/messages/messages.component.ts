@@ -4,6 +4,7 @@ import { startWith, switchMap } from "rxjs/operators";
 
 import { MessageService } from "../message.service";
 import { Message } from "../message-type";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-messages",
@@ -11,24 +12,10 @@ import { Message } from "../message-type";
   styleUrls: ["./messages.component.css"],
 })
 export class MessagesComponent implements OnInit {
-  messages: Message[];
+  messages: Observable<Message[]> = this.messageService.getMessages();
 
-  constructor(private messageService: MessageService) {
-  }
-
-  updateMessages() {
-    this.messageService.getMessages().subscribe((msgList) => {
-       this.messages = msgList;
-    });
-  }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit() {
-    interval(10000).pipe(
-      startWith(0),
-      switchMap(() => this.messageService.getMessages())
-    ).subscribe({
-      next: x => this.messages = x
-    });
-    //.subscribe(res => this.statuses = res.statuses});
   }
 }
