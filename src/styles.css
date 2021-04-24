@@ -30,8 +30,33 @@ body {
 .row.header {
   flex: none;
   justify-content: space-between;
+  align-items: center;
   /*background-color: rgb(39, 0, 65);*/
   color: white;
+}
+
+.row.header div {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  /* height: 100%; */
+}
+
+.row.header div > * {
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  font-size: 1.1em;
+}
+
+.row.header div button .mat-icon {
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .row.content {
@@ -39,7 +64,6 @@ body {
   flex-flow: row nowrap;
   background-color: #333;
   color: white;
-  /*border: 2px solid red;*/
   overflow-y: auto;
 }
 
