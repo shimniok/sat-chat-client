@@ -4,7 +4,15 @@
       <mat-toolbar class="row header" color="primary">
         <div><span>Sat Chat</span></div>
         <div>
-          <span>Name Goes Here</span>
+          <button
+            mat-icon-button
+            on-click="logout()"
+            class="button-container"
+            aria-label="icon-button with menu icon"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <mat-label>{{ me.name }}</mat-label>
+          </button>
         </div>
         <div>
           <button

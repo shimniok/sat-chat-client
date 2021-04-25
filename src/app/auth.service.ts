@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { User, UserLogin } from "./user-type";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -9,7 +10,7 @@ export class AuthService implements OnInit {
   endpoint: string = "/api/auth";
   headers = { "content-type": "application/json" };
 
-  getUser() {
+  getUser(): Observable<User> {
     return this.http.get<User>(this.endpoint);
   }
 

@@ -10,7 +10,7 @@ import { User } from "../user-type";
   styleUrls: ["./chat.component.css"],
 })
 export class ChatComponent implements OnInit {
-  // name: Observable<string>;
+  me: User;
 
   logout() {
     this.auth.logout().subscribe(
@@ -21,17 +21,7 @@ export class ChatComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) {
     console.log("constructor");
-    // this.me = this.auth.getUser();
-    // .subscribe(
-    //   (x) => (this.me = x),
-    //   (err) => this.router.navigate(["login"])
-    // );
-    // this.me = {
-    //   id: 0,
-    //   name: "?",
-    //   email: "",
-    //   device: null,
-    // };
+    this.auth.getUser().subscribe((x) => (this.me = x));
   }
 
   ngOnInit(): void {
