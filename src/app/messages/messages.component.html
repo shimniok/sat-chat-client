@@ -1,3 +1,4 @@
-<div class="message-row {{ m.sender_id == null ? 'theirs' : 'mine' }} " *ngFor="let m of messages | async">
+<div class="message-row {{ m.sender_id == null ? 'theirs' : 'mine' }}" *ngFor="let m of messages | async">
   <div class="message">{{ m.message }}</div>
 </div>
+<div #scrollBottom></div>
