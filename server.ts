@@ -11,7 +11,7 @@ console.log("proxying requests to "+apiUrl);
 
 app.use(express.static(__dirname + "/angular-build"));
 
-app.get("/api/*", function (req, res) {
+app.all("/api/*", function (req, res) {
   apiProxy.web(req, res, { target: apiUrl });
 });
 
