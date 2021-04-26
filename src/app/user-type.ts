@@ -1,6 +1,6 @@
 import { Device } from "./device-type";
 
-export interface User {
+export class User {
     id: number;
     name: string;
     email: string;
