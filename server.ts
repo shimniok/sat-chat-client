@@ -12,7 +12,9 @@ console.log("proxying requests to "+apiUrl);
 app.use(express.static(__dirname + "/angular-build"));
 
 app.all("/api/*", function (req, res) {
-  apiProxy.web(req, res, { target: apiUrl });
+  console.log(req.headers.host + " " + req.method + " " + req.url);
+  console.log(apiUrl+req.url);
+  apiProxy.web(req, res, { target: apiUrl, changeOrigin: true });
 });
 
 app.get("/*", function (req, res) {
@@ -20,4 +22,6 @@ app.get("/*", function (req, res) {
 });
 
 // Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+var listener = app.listen(process.env.PORT || 8080, function() {
+  console.log("Listening on port " + listener.address().port);
+});
