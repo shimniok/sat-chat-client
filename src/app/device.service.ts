@@ -4,8 +4,18 @@ import { Device } from "./device-type";
 
 @Injectable()
 export class DeviceService {
-  getDevices() {
-    return this.http.get<Device[]>("/api/device");
+  endpoint: string = "/api/device";
+  headers = { "content-type": "application/json" };
+
+  get() {
+    return this.http.get<Device[]>(this.endpoint);
   }
+
+  post(device: Device) {
+    const body = JSON.stringify(device);
+    console.log(body);
+    return this.http.post(this.endpoint, body, { "headers": this.headers });
+  }
+
   constructor(private http: HttpClient) {}
 }

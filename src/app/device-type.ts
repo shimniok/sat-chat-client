@@ -1,4 +1,4 @@
-export interface Device {
+export class Device {
   id: number;
   owner_id: number;
   // name: string;
