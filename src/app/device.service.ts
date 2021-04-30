@@ -8,7 +8,7 @@ export class DeviceService {
   headers = { "content-type": "application/json" };
 
   get() {
-    return this.http.get<Device[]>(this.endpoint);
+    return this.http.get<Device>(this.endpoint);
   }
 
   post(device: Device) {

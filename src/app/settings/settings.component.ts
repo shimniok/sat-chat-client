@@ -9,7 +9,7 @@ import { DeviceService } from "../device.service";
   styleUrls: ["./settings.component.css"],
 })
 export class SettingsComponent implements OnInit {
-  myDevice = new Device();
+  myDevice: Device = new Device();
 
   constructor(private deviceService: DeviceService) {
     console.log(this.myDevice);
@@ -27,9 +27,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.deviceService.get().subscribe(
-      (x) => this.myDevice = x[0], 
-      (err: any) => console.log(err) // TODO: handle error
-    )
+    this.deviceService.get().subscribe((x) => this.myDevice = x)
+    // TODO: handle error
   }
 }
