@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -12,6 +12,10 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatDividerModule } from "@angular/material/divider";
+import {
+  ErrorStateMatcher,
+  ShowOnDirtyErrorStateMatcher,
+} from "@angular/material/core";
 
 import { ScrollToBottomDirective } from "./scroll-to-bottom.directive";
 import { AppComponent } from "./app.component";
@@ -20,7 +24,6 @@ import { MessageService } from "./message.service";
 import { SettingsComponent } from "./settings/settings.component";
 import { InputComponent } from "./input/input.component";
 import { MessagesComponent } from "./messages/messages.component";
-import { fromEventPattern } from "rxjs";
 import { ChatComponent } from "./chat/chat.component";
 import { LoginComponent } from "./login/login.component";
 import { AuthInterceptor } from "./auth-interceptor";
@@ -29,6 +32,7 @@ import { AuthInterceptor } from "./auth-interceptor";
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -59,6 +63,7 @@ import { AuthInterceptor } from "./auth-interceptor";
     DeviceService,
     MessageService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
 })
 export class AppModule {}

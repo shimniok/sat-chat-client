@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
+
 import { RockblockService } from "../rockblock.service";
 
 @Component({
@@ -8,19 +9,30 @@ import { RockblockService } from "../rockblock.service";
   styleUrls: ["./input.component.css"],
 })
 export class InputComponent implements OnInit {
-  // TODO: add validators
-  // max length, min length
-  // https://angular.io/api/forms/Validators
+  min: number = 1;
+  max: number = 150;
 
-  input: string;
+  message = new FormControl("", [
+    Validators.maxLength(this.max),
+    Validators.minLength(this.min),
+  ]);
 
+  getError() {
+    if (this.message.hasError("maxlength")) return "message too long";
+  }
+
+  isInvalid() {
+    return (this.message.invalid || this.message.value == "");
+  }
+  
   send() {
-    console.log("sending " + this.input);
-    this.rockblock.send(this.input).subscribe(
+    const m: string = this.message.value;
+    console.log("sending " + m);
+    this.rockblock.send(m).subscribe(
       (x) => {
         console.log("sent message ");
         console.log(x);
-        this.input = "";
+        this.message.reset();
       },
       (error) => {
         console.log("message send error");
