@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-
 import { RockblockService } from "../rockblock.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-input",
@@ -22,9 +22,15 @@ export class InputComponent implements OnInit {
   }
 
   isInvalid() {
-    return (this.message.invalid || this.message.value == "");
+    return this.message.invalid || this.message.value == "";
   }
-  
+
+  openSnackBar(message: string, action: string, duration: number) {
+    this._snackBar.open(message, action, {
+      duration: duration,
+    });
+  }
+
   send() {
     const m: string = this.message.value;
     console.log("sending " + m);
@@ -33,15 +39,19 @@ export class InputComponent implements OnInit {
         console.log("sent message ");
         console.log(x);
         this.message.reset();
+        //this.openSnackBar("Message sent", "Ok", 2000);
       },
       (error) => {
         console.log("message send error");
-        // TODO: UI error
+        this.openSnackBar("Error sending message", "Ok", 5000);
       }
     );
   }
 
-  constructor(private rockblock: RockblockService) {}
+  constructor(
+    private rockblock: RockblockService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit() {}
 }

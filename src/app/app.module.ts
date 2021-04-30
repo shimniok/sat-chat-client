@@ -11,6 +11,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatDividerModule } from "@angular/material/divider";
 import {
   ErrorStateMatcher,
@@ -42,6 +43,7 @@ import { AuthInterceptor } from "./auth-interceptor";
     MatSidenavModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSnackBarModule,
     MatDividerModule,
     RouterModule.forRoot([
       { path: "login", component: LoginComponent },
