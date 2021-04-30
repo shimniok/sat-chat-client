@@ -12,7 +12,7 @@ export class MessageService implements OnDestroy {
   private stopPolling = new Subject();
 
   constructor(private http: HttpClient) {
-    this.messages = timer(1, 30000).pipe(
+    this.messages = timer(1, 10000).pipe(
       switchMap(() =>
         this.http.get<Message[]>("/api/message", this.options)
       ),
