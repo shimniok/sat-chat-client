@@ -7,15 +7,14 @@ import { retry, share, switchMap, takeUntil } from "rxjs/operators";
 
 @Injectable()
 export class MessageService implements OnDestroy {
-  url = "/api/message";
-  headers = { "content-type": "application/json" };
+  options = { headers: { "content-type": "application/json" } };
   messages: Observable<Message[]>;
   private stopPolling = new Subject();
 
   constructor(private http: HttpClient) {
     this.messages = timer(1, 30000).pipe(
       switchMap(() =>
-        this.http.get<Message[]>("/api/message", { headers: this.headers })
+        this.http.get<Message[]>("/api/message", this.options)
       ),
       retry(2),
       share(),
@@ -23,7 +22,7 @@ export class MessageService implements OnDestroy {
     );
   }
 
-  getMessages() {
+  get() {
     console.log("getMessages()");
     return this.messages;
   }

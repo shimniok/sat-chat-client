@@ -12,7 +12,7 @@ import { Observable } from "rxjs";
 export class MessagesComponent implements OnInit, AfterViewChecked {
   @ViewChild("scrollBottom") private bottom: ElementRef;
 
-  messages: Observable<Message[]> = this.messageService.getMessages();
+  messages: Observable<Message[]> = this.messageService.get();
 
   constructor(private messageService: MessageService) {}
 
