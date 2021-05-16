@@ -7,11 +7,11 @@ const apiProxy = httpProxy.createProxyServer();
 
 var apiUrl = config.get("apiUrl");
 
-console.log("proxying requests to "+apiUrl);
+console.log("proxying requests to " + apiUrl);
 
 app.use(express.static(__dirname + "/angular-build"));
 
-app.enable("trust proxy");
+app.enable("trust proxy"); // trust proxy header
 app.use((req, res, next) => {
   req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
 });
@@ -21,13 +21,17 @@ app.all("/api/*", function (req, res) {
   console.log(apiUrl+req.url);
   try {
     apiProxy.web(req, res, { target: apiUrl, changeOrigin: true });
-  } catch {
-    console.error();
+  } catch(err) {
+    console.log(err);
   }
 });
 
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "angular-build", "index.html"));
+  if (req.secure) {
+    res.sendFile(path.join(__dirname, "angular-build", "index.html"));
+  } else {
+    res.redirect("https://" + req.headers.host + req.url);
+  }
 });
 
 // Start the app by listening on the default Heroku port
