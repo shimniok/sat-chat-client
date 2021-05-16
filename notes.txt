@@ -1,0 +1,10 @@
+
+# Audit (vulnerabilities, etc)
+npm audit
+
+# Fix issues
+npm audit fix
+
+# Update packages
+ncu -u 
+npm install
