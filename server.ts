@@ -11,6 +11,11 @@ console.log("proxying requests to "+apiUrl);
 
 app.use(express.static(__dirname + "/angular-build"));
 
+app.enable("trust proxy");
+app.use((req, res, next) => {
+  req.secure ? next() : res.redirect("https://" + req.headers.host + req.url);
+});
+
 app.all("/api/*", function (req, res) {
   console.log(req.headers.host + " " + req.method + " " + req.url);
   console.log(apiUrl+req.url);
@@ -19,7 +24,6 @@ app.all("/api/*", function (req, res) {
   } catch {
     console.error();
   }
-
 });
 
 app.get("/*", function (req, res) {
