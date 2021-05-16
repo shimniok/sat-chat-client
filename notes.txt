@@ -5,6 +5,12 @@ npm audit
 # Fix issues
 npm audit fix
 
-# Update packages
-ncu -u 
+# List available package updates
+ncu 
+
+# Write updates to packages.json
+ncu --update
+
+# Install updated packages
 npm install
+npm update ...
