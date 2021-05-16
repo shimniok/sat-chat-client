@@ -1,49 +1,35 @@
-<mat-drawer-container autosize>
-  <div id="background">
-    <div class="box">
-      <mat-toolbar class="row header" color="primary">
-        <div><span>Sat Chat</span></div>
-        <div>
-          <button
-            mat-icon-button
-            class="button-container"
-            aria-label="icon-button with menu icon"
-          >
-            <mat-icon>account_circle</mat-icon>
-            <mat-label>{{ me.name }}</mat-label>
-          </button>
-        </div>
-        <div>
-          <button
-            mat-icon-button
-            on-click="drawer.toggle()"
-            class="button-container"
-            aria-label="icon-button with menu icon"
-          >
-            <mat-icon>settings</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            on-click="logout()"
-            class="button-container"
-            aria-label="icon-button with menu icon"
-          >
-            <mat-icon>logout</mat-icon>
-          </button>
-        </div>
-      </mat-toolbar>
+  <mat-drawer-container>
+    <div id="background">
+      <div class="box">
+        <mat-toolbar class="row header" color="primary">
+          <div><h2>Sat Chat</h2></div>
+          <div>
+            <button mat-icon-button class="button-container" aria-label="icon-button with menu icon">
+              <mat-icon>account_circle</mat-icon>
+              <mat-label>{{ me.name }}</mat-label>
+            </button>
+          </div>
+          <div>
+            <button mat-icon-button on-click="drawer.toggle()" class="button-container" aria-label="icon-button with menu icon">
+              <mat-icon>settings</mat-icon>
+            </button>
+            <button mat-icon-button on-click="logout()" class="button-container" aria-label="icon-button with menu icon">
+              <mat-icon>logout</mat-icon>
+            </button>
+          </div>
+        </mat-toolbar>
 
-      <div class="row content">
-        <div class="message-col">
-          <app-messages></app-messages>
+        <div class="row content">
+          <div class="message-col">
+            <app-messages></app-messages>
+          </div>
         </div>
+
+        <app-input class="row footer"></app-input>
       </div>
-
-      <app-input class="row footer"></app-input>
     </div>
-  </div>
 
-  <mat-drawer #drawer class="sidenav" mode="over">
-    <app-settings></app-settings>
-  </mat-drawer>
-</mat-drawer-container>
+    <mat-drawer #drawer class="sidenav" mode="over">
+      <app-settings></app-settings>
+    </mat-drawer>
+  </mat-drawer-container>

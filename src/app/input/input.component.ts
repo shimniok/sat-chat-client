@@ -6,7 +6,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 @Component({
   selector: "app-input",
   templateUrl: "./input.component.html",
-  styleUrls: ["./input.component.css"],
+  styleUrls: ["./input.component.scss"],
 })
 export class InputComponent implements OnInit {
   min: number = 1;
@@ -43,6 +43,7 @@ export class InputComponent implements OnInit {
       },
       (error) => {
         console.log("message send error");
+        // TODO: more detailed error messages
         this.openSnackBar("Error sending message", "Ok", 5000);
       }
     );

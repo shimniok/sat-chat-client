@@ -6,7 +6,7 @@ import { User } from "../user-type";
 @Component({
   selector: "app-chat",
   templateUrl: "./chat.component.html",
-  styleUrls: ["./chat.component.css"],
+  styleUrls: ["./chat.component.scss"],
 })
 export class ChatComponent implements OnInit {
   me: User = new User();
