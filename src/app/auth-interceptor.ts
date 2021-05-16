@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (err.status == 401) {
           console.log("intercept: 401");
           this.router.navigate(["login"]);
-          // return throwError(err);
+          return throwError(err);
         }
         return next.handle(httpRequest.clone());
       })
