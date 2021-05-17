@@ -13,7 +13,7 @@ app.use(express.static(__dirname + "/angular-build"));
 
 //app.enable("trust proxy"); // trust proxy header
 app.use((req, res, next) => {
-  if (req.headers["x-forwarded-proto"] === "http") {
+  if (req.headers["x-forwarded-proto"] === "http" && process.env.NODE_ENV === "production") {
     res.redirect("https://" + req.headers.host + req.url);
   } else {
     next();
