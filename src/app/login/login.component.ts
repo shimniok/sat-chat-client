@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthService } from "../auth.service";
 import { UserLogin } from "../user-type";
 
@@ -13,22 +13,25 @@ export class LoginComponent implements OnInit {
     email: "",
     password: "",
   };
+  return = "";
+  error = false;
+
+  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {
+    auth.getUser().subscribe(() => this.router.navigateByUrl(this.return));
+  }
 
   login() {
     console.log("login");
-
-    this.authService.login(this.loginInfo).subscribe(
+    this.auth.login(this.loginInfo).subscribe(
       (x) => {
-        this.router.navigate(["chat"]);
+        this.error = false;
+        this.router.navigateByUrl(this.return);
       },
-      (error) => {
-        console.log("authentication error");
-        // TODO: Indicate error
-      }
+      (err) => (this.error = true)
     );
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => (this.return = params["return"] || "/chat"));
+  }
 }

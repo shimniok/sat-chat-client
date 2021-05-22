@@ -9,22 +9,37 @@ import { Observable } from "rxjs";
 export class AuthService implements OnInit {
   endpoint: string = "/api/auth";
   headers = { "content-type": "application/json" };
+  user: Observable<User> = this.http.get<User>(this.endpoint);
+  isLoggedIn: Boolean = false;
 
   getUser(): Observable<User> {
-    return this.http.get<User>(this.endpoint);
+    return this.user;
   }
 
   login(loginInfo: UserLogin) {
     const body = JSON.stringify(loginInfo);
-    console.log(body);
-    return this.http.post(this.endpoint, body, { headers: this.headers });
+    // console.log(body);
+    this.user = this.http.post<User>(this.endpoint, body, { headers: this.headers });
+    this.user.subscribe(
+      (x) => (this.isLoggedIn = true),
+      () => (this.isLoggedIn = false)
+    );
+    return this.user;
   }
 
   logout() {
-    return this.http.delete(this.endpoint);
+    this.http.delete<User>(this.endpoint).subscribe(
+      () => (this.isLoggedIn = false),
+      () => console.log("logout error")
+    );
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.user.subscribe(
+      (x) => (this.isLoggedIn = true),
+      () => (this.isLoggedIn = false)
+    );
+  }
 
   ngOnInit() {}
 }

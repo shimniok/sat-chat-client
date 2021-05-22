@@ -12,10 +12,8 @@ export class ChatComponent implements OnInit {
   me: User = new User();
   
   logout() {
-    this.auth.logout().subscribe(
-      (x) => this.router.navigate(["login"]),
-      (err: any) => console.log("logout error")
-    );
+    this.auth.logout();
+    this.router.navigateByUrl("/login");
   }
 
   constructor(private auth: AuthService, private router: Router) {

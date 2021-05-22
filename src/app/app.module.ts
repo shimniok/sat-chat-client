@@ -27,7 +27,7 @@ import { InputComponent } from "./input/input.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { ChatComponent } from "./chat/chat.component";
 import { LoginComponent } from "./login/login.component";
-import { AuthInterceptor } from "./auth-interceptor";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   imports: [
@@ -47,7 +47,7 @@ import { AuthInterceptor } from "./auth-interceptor";
     MatDividerModule,
     RouterModule.forRoot([
       { path: "login", component: LoginComponent },
-      { path: "chat", component: ChatComponent },
+      { path: "chat", component: ChatComponent, canActivate: [AuthGuard] },
       { path: "", redirectTo: "chat", pathMatch: "full" },
     ]),
   ],
@@ -64,7 +64,6 @@ import { AuthInterceptor } from "./auth-interceptor";
   providers: [
     DeviceService,
     MessageService,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
 })
