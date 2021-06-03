@@ -17,7 +17,13 @@ export class LoginComponent implements OnInit {
   error = false;
 
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {
-    auth.getUser().subscribe(() => this.router.navigateByUrl(this.return));
+    // auth.getUser().subscribe((u) => {
+    //   console.log("login: constructor getUser() u = %s", u.email);
+    //   this.router.navigateByUrl(this.return)
+    // },
+    // (err) => {
+    //   console.log("login: constructor getUser() error");
+    // });
   }
 
   login() {

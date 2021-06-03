@@ -10,10 +10,15 @@ import { User } from "../user-type";
 })
 export class ChatComponent implements OnInit {
   me: User = new User();
-  
+
   logout() {
-    this.auth.logout();
-    this.router.navigateByUrl("/login");
+    this.auth.logout().subscribe(
+      () => {
+        console.log("chat: logout() success");
+        this.router.navigateByUrl("/login");
+      },
+      () => console.log("chat: logout() fail")
+    );
   }
 
   constructor(private auth: AuthService, private router: Router) {
