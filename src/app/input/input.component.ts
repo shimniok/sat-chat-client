@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { RockblockService } from "../rockblock.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MessageService } from "../message.service";
 
 @Component({
   selector: "app-input",
@@ -12,10 +13,9 @@ export class InputComponent implements OnInit {
   min: number = 1;
   max: number = 150;
 
-  message = new FormControl("", [
-    Validators.maxLength(this.max),
-    Validators.minLength(this.min),
-  ]);
+  message = new FormControl("", [Validators.maxLength(this.max), Validators.minLength(this.min)]);
+
+  constructor(private rockblock: RockblockService, private _snackBar: MatSnackBar, private messageService: MessageService) {}
 
   getError() {
     if (this.message.hasError("maxlength")) return "message too long";
@@ -36,9 +36,9 @@ export class InputComponent implements OnInit {
     console.log("sending " + m);
     this.rockblock.send(m).subscribe(
       (x) => {
-        console.log("sent message ");
-        console.log(x);
+        //console.log("sent: %s", x.toString());
         this.message.reset();
+        this.messageService.refresh()
         //this.openSnackBar("Message sent", "Ok", 2000);
       },
       (error) => {
@@ -48,11 +48,6 @@ export class InputComponent implements OnInit {
       }
     );
   }
-
-  constructor(
-    private rockblock: RockblockService,
-    private _snackBar: MatSnackBar
-  ) {}
 
   ngOnInit() {}
 }
