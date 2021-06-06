@@ -28,6 +28,8 @@ import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./auth.guard";
 import { DeviceService } from "./services/device.service";
 import { MessageService } from "./services/message.service";
+import { UserService } from "./services/user.service";
+import { AuthService } from "./services/auth.service";
 
 @NgModule({
   imports: [
@@ -64,6 +66,8 @@ import { MessageService } from "./services/message.service";
   providers: [
     DeviceService,
     MessageService,
+    UserService,
+    AuthService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
 })
