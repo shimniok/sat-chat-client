@@ -5,6 +5,7 @@ export class User {
     name: string;
     email: string;
     device: Device;
+    phone: string;
 }
 
 export interface UserLogin {

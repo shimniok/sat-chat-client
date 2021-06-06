@@ -24,25 +24,32 @@
   <button mat-raised-button color="primary">Save</button>
 </form>
 
+<h3>SMS Notification Settings</h3>
+
 <form #form="ngForm" (ngSubmit)="onSubmitPhone(form)" class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>SMS Phone Number</mat-label>
-    <input name="phone" type="phone" matInput [(ngModel)]="myPhone" />
+    <input name="phone" type="phone" matInput [(ngModel)]="phone" />
   </mat-form-field>
+
+  <!-- <mat-form-field>
+    <mat-label>Message Notifications</mat-label>
+    <input name="notification" type="checkbox" matInput />
+  </mat-form-field> -->
+  
+  <button mat-raised-button color="primary">Save</button>
 </form>
 
 
-<!-- <h3>Change Password</h3>
-
-<form class="example-form">
+<!-- <form #form="ngForm" (ngSubmit)="onSubmitPhone(form)" class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>Password</mat-label>
-    <input type="password" matInput />
+    <input name="newPassword1" type="password" matInput [(ngModel)]="password1" />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Confirm</mat-label>
-    <input type="password" matInput />
+    <input name="newPassword2" type="password" matInput [(ngModel)]="password2" />
   </mat-form-field>
 
   <button mat-raised-button color="primary">Save</button>
