@@ -8,14 +8,14 @@ export class DeviceService {
   endpoint: string = "/api/device";
   headers = { "content-type": "application/json" };
 
-  get() {
+  get(): Observable<Device> {
     return this.http.get<Device>(this.endpoint);
   }
 
-  post(device: Device) {
+  post(device: Device): Observable<Device> {
     const body = JSON.stringify(device);
     console.log(body);
-    return this.http.post(this.endpoint, body, { "headers": this.headers });
+    return this.http.post<Device>(this.endpoint, body, { "headers": this.headers });
   }
 
   constructor(private http: HttpClient) {}
