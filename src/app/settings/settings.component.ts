@@ -12,7 +12,9 @@ import { User } from "../types/user-type";
 })
 export class SettingsComponent implements OnInit {
   myDevice: Device = new Device();
-  phone: string;
+  me: User;
+  userSaveError: boolean = false;
+  userSaveOk: boolean = false;
 
   constructor(private deviceService: DeviceService, private userService: UserService) {
     console.log(this.myDevice);
@@ -36,13 +38,29 @@ export class SettingsComponent implements OnInit {
     );
   }
 
-  onSubmitPhone(form: NgForm) {
-    //console.log("Submit phone=%s", this.me.phone);
+  onSubmitUser(form: NgForm) {
+    console.log("Submit new phone = <%s>", this.me.phone);
+    this.userService.saveUser(this.me).subscribe(
+      (u) => { 
+        this.me = u;
+        this.userSaveOk = true;
+        this.userSaveError = false;
+      },
+      (err) => {
+        this.userSaveError = true;
+        this.userSaveOk = false;
+      }
+    );
   }
 
   ngOnInit() {
     this.deviceService.get().subscribe((d) => this.myDevice = d);
-    this.userService.get().subscribe((u) => this.phone = u.phone);
-    // TODO: handle error
+    this.userService.user.subscribe({
+      next: (u) => { 
+        console.log("next user: %s", u.name);
+        this.me = u
+      }
+    });
+    // TODO: handle errors
   }
 }

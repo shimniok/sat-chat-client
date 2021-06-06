@@ -24,12 +24,17 @@
   <button mat-raised-button color="primary">Save</button>
 </form>
 
-<h3>SMS Notification Settings</h3>
+<h3>User Settings</h3>
 
-<form #form="ngForm" (ngSubmit)="onSubmitPhone(form)" class="example-form">
+<form #form="ngForm" (ngSubmit)="onSubmitUser(form)" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Name</mat-label>
+    <input name="name" type="text" matInput [(ngModel)]="me.name" />
+  </mat-form-field>
+
   <mat-form-field class="example-full-width">
     <mat-label>SMS Phone Number</mat-label>
-    <input name="phone" type="phone" matInput [(ngModel)]="phone" />
+    <input name="phone" type="phone" matInput [(ngModel)]="me.phone" />
   </mat-form-field>
 
   <!-- <mat-form-field>
@@ -37,7 +42,11 @@
     <input name="notification" type="checkbox" matInput />
   </mat-form-field> -->
   
-  <button mat-raised-button color="primary">Save</button>
+  <div class="inline">
+    <button mat-raised-button color="primary">Save</button>
+    <div class="error" *ngIf="userSaveError">Error saving</div>
+    <div class="ok" *ngIf="userSaveOk">Saved</div>
+  </div>
 </form>
 
 
