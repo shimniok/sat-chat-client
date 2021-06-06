@@ -1,6 +1,6 @@
 import { Injectable, Input, OnDestroy, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Message } from "./message-type";
+import { Message } from "../types/message-type";
 import { BehaviorSubject, Observable, Subject, timer } from "rxjs";
 import { retry, share, switchMap, takeUntil } from "rxjs/operators";
 

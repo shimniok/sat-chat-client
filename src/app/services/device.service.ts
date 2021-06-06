@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Device } from "./device-type";
+import { Device } from "../types/device-type";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class DeviceService {

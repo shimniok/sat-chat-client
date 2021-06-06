@@ -1,7 +1,7 @@
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 
-import { MessageService } from "../message.service";
-import { Message } from "../message-type";
+import { MessageService } from "../services/message.service";
+import { Message } from "../types/message-type";
 import { Observable } from "rxjs";
 
 @Component({

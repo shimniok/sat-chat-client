@@ -1,6 +1,4 @@
-import { Component, VERSION, ViewChild } from "@angular/core";
-import { Router } from "@angular/router";
-import { AuthService } from "./auth.service";
+import { Component, ViewChild } from "@angular/core";
 import { ScrollToBottomDirective } from "./scroll-to-bottom.directive";
 
 @Component({

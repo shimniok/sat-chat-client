@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { User, UserLogin } from "./user-type";
+import { User, UserLogin } from "../types/user-type";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 

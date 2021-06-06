@@ -20,14 +20,14 @@ import {
 
 import { ScrollToBottomDirective } from "./scroll-to-bottom.directive";
 import { AppComponent } from "./app.component";
-import { DeviceService } from "./device.service";
-import { MessageService } from "./message.service";
 import { SettingsComponent } from "./settings/settings.component";
 import { InputComponent } from "./input/input.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { ChatComponent } from "./chat/chat.component";
 import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./auth.guard";
+import { DeviceService } from "./services/device.service";
+import { MessageService } from "./services/message.service";
 
 @NgModule({
   imports: [

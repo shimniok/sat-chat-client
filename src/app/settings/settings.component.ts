@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { Device } from "../device-type";
-import { DeviceService } from "../device.service";
+import { Device } from "../types/device-type";
+import { DeviceService } from "../services/device.service";
 
 @Component({
   selector: "app-settings",

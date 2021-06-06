@@ -1,8 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-import { RockblockService } from "../rockblock.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { MessageService } from "../message.service";
+
+import { RockblockService } from "../services/rockblock.service";
+import { MessageService } from "../services/message.service";
 
 @Component({
   selector: "app-input",
