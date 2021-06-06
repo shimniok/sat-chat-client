@@ -24,6 +24,14 @@
   <button mat-raised-button color="primary">Save</button>
 </form>
 
+<form #form="ngForm" (ngSubmit)="onSubmitPhone(form)" class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>SMS Phone Number</mat-label>
+    <input name="phone" type="phone" matInput [(ngModel)]="myPhone" />
+  </mat-form-field>
+</form>
+
+
 <!-- <h3>Change Password</h3>
 
 <form class="example-form">

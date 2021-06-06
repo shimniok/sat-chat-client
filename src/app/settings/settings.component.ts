@@ -10,6 +10,7 @@ import { DeviceService } from "../device.service";
 })
 export class SettingsComponent implements OnInit {
   myDevice: Device = new Device();
+  myPhone: String;
 
   constructor(private deviceService: DeviceService) {
     console.log(this.myDevice);
@@ -26,8 +27,13 @@ export class SettingsComponent implements OnInit {
     );
   }
 
+  onSubmitPhone(form: NgForm) {
+    console.log("Submit phone=%s", this.myPhone);
+  }
+
   ngOnInit() {
     this.deviceService.get().subscribe((x) => this.myDevice = x)
     // TODO: handle error
+    // TODO: get user
   }
 }
